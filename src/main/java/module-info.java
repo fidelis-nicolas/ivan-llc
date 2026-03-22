@@ -6,4 +6,6 @@ module com.ivanllc.ivanllc {
 
     opens com.ivanllc.ivanllc to javafx.fxml;
     exports com.ivanllc.ivanllc;
+    exports com.ivanllc.ivanllc.controller;
+    opens com.ivanllc.ivanllc.controller to javafx.fxml;
 }
