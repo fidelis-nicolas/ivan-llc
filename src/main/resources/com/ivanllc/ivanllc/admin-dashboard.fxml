@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="495.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanllc.ivanllc.controller.AdminDashboardController">
+   <children>
+      <Button layoutX="305.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Contractor Services" />
+      <Button layoutX="305.0" layoutY="89.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Employee Services" />
+      <Button layoutX="305.0" layoutY="221.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Services" />
+      <Button layoutX="308.0" layoutY="289.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Department" />
+      <Button layoutX="305.0" layoutY="356.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Facilites" />
+      <Button layoutX="308.0" layoutY="418.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Customers" />
+      <Label layoutX="314.0" layoutY="14.0" prefHeight="18.0" prefWidth="165.0" text="Admin Panel">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="667.0" layoutY="410.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="120.0" text="Logout" textFill="#bf1c1c" />
+   </children>
+</AnchorPane>

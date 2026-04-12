@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
         stage.setTitle("Welcome to Ivan LLC App");
         stage.setResizable(true);
         stage.setScene(scene);
