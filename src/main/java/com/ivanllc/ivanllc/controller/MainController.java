@@ -50,22 +50,22 @@ public class MainController {
         String email = txt_email.getText();
         String password = txt_password.getText();
 
-        User user = service.authUser(email,password);
-        if(user != null) {
-            try {
-                Stage stage = (Stage) btn_register.getScene().getWindow();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ivanllc/ivanllc/admin-dashboard.fxml")));
-                stage.setScene(new Scene(root, 900, 600));
-                stage.setTitle("admin-dashboard");
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-        }
-        else{
-            Messages.error("Invalid login details");
-        }
+       // User user = service.authUser(email,password);
+//        if(user != null) {
+//            try {
+//                Stage stage = (Stage) btn_register.getScene().getWindow();
+//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ivanllc/ivanllc/admin-dashboard.fxml")));
+//                stage.setScene(new Scene(root, 900, 600));
+//                stage.setTitle("admin-dashboard");
+//
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//
+//        }
+//        else{
+//            Messages.error("Invalid login details");
+//        }
 
     }
 }

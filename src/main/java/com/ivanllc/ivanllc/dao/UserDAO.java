@@ -28,6 +28,7 @@ public class UserDAO {
     public User authUser(String email,String password) {
         User dUser = null;
         try {
+            //TODO Write the join for the SQL to authUser
             Connection connection = DBConnect.getConnection();
             String sql = "SELECT email, password, user_role FROM users WHERE email=? AND password=?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -47,4 +48,6 @@ public class UserDAO {
         }
         return dUser;
     }
+
+
 }
