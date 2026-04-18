@@ -15,4 +15,9 @@ public class UserServiceImpl implements UserService {
         //TODO add check for confirm password
         userDAO.registerUser(user);
     }
+
+    @Override
+    public User authUser(String email, String password) {
+       return userDAO.authUser(email,password);
+    }
 }

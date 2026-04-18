@@ -4,6 +4,7 @@ import com.ivanllc.ivanllc.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
@@ -13,9 +14,9 @@ public class UserDAO {
             Connection connection = DBConnect.getConnection();
             String sql = "INSERT into users VALUES(null,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1,user.getEmail());
-            statement.setString(2,user.getPassword());
-            statement.setString(3,user.getUserRole());
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getUserRole());
             statement.executeUpdate();
 
             connection.close();
@@ -24,7 +25,26 @@ public class UserDAO {
         }
     }
 
-    public boolean authUser(User user){
-        return  false;
+    public User authUser(String email,String password) {
+        User dUser = null;
+        try {
+            Connection connection = DBConnect.getConnection();
+            String sql = "SELECT email, password, user_role FROM users WHERE email=? AND password=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,email);
+            statement.setString(2,password);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                dUser = new User();
+                dUser.setEmail(resultSet.getString("email"));
+                dUser.setPassword(resultSet.getString("password"));
+                dUser.setUserRole(resultSet.getString("user_role"));
+
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return dUser;
     }
 }
