@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="userRegister" prefHeight="476.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanllc.ivanllc.controller.RegisterUserController">
+<AnchorPane fx:id="userRegister" prefHeight="476.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanllc.ivanllc.controller.RegisterUserController">
    <children>
       <Label layoutX="203.0" layoutY="86.0" prefWidth="298.0" />
       <Label layoutX="168.0" layoutY="68.0" prefHeight="35.0" prefWidth="368.0" text="Customer registration form">
@@ -18,7 +18,11 @@
       <Label layoutX="239.0" layoutY="114.0" text="Email" />
       <TextField fx:id="txt_password" layoutX="239.0" layoutY="206.0" />
       <Label layoutX="238.0" layoutY="184.0" text="Password" />
-      <Button fx:id="btn_login" layoutX="241.0" layoutY="242.0" mnemonicParsing="false" onAction="#openLoginPage" style="-fx-border-radius: 30px;" text="Login" />
-      <Button fx:id="btn_register" layoutX="329.0" layoutY="244.0" mnemonicParsing="false" onAction="#registerUser" text="Register" />
+      <Button fx:id="btn_login" layoutX="239.0" layoutY="371.0" mnemonicParsing="false" onAction="#openLoginPage" style="-fx-border-radius: 30px;" text="Login" />
+      <Button fx:id="btn_register" layoutX="328.0" layoutY="371.0" mnemonicParsing="false" onAction="#registerUser" text="Register" />
+      <Label layoutX="242.0" layoutY="238.0" text="Phone number" />
+      <Label fx:id="txt_name" layoutX="242.0" layoutY="302.0" text="Full name" />
+      <TextField fx:id="txt_phone" layoutX="239.0" layoutY="266.0" />
+      <TextField fx:id="txt_name" layoutX="239.0" layoutY="330.0" />
    </children>
 </AnchorPane>

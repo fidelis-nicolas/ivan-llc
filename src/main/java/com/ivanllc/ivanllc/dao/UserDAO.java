@@ -2,10 +2,7 @@ package com.ivanllc.ivanllc.dao;
 
 import com.ivanllc.ivanllc.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserDAO {
 
@@ -13,11 +10,19 @@ public class UserDAO {
         try {
             Connection connection = DBConnect.getConnection();
             String sql = "INSERT into users VALUES(null,?,?,?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getUserRole());
             statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+
+            while (rs.next()){
+                int  key = rs.getInt(1);
+                System.out.println("Primary inserted last: " + key);
+            }
 
             connection.close();
         } catch (SQLException e) {
