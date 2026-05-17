@@ -1,5 +1,6 @@
 package com.ivanllc.ivanllc.controller;
 
+import com.ivanllc.ivanllc.dao.UserDAOImpl;
 import com.ivanllc.ivanllc.entity.User;
 import com.ivanllc.ivanllc.notification.Messages;
 import com.ivanllc.ivanllc.service.UserService;
@@ -9,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -17,7 +17,11 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class MainController {
-    UserService service = new UserServiceImpl();
+    UserDAOImpl userDAO = new UserDAOImpl();
+
+
+
+    UserService service = new UserServiceImpl(userDAO);
 
     @FXML
     TextField txt_email;
@@ -32,7 +36,7 @@ public class MainController {
     Button btn_login;
 
     @FXML
-    public void openNewRegistration(){
+    public void openNewRegistration() {
         try {
 
             Stage stage = (Stage) btn_register.getScene().getWindow();
@@ -40,32 +44,51 @@ public class MainController {
             stage.setScene(new Scene(root, 700, 500));
             stage.setTitle("User Registration");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void userLogin(){
-        String email = txt_email.getText();
+    public void userLogin() {
+        String email = txt_email.getText() == null ? "" : txt_email.getText().trim();
         String password = txt_password.getText();
 
-       // User user = service.authUser(email,password);
-//        if(user != null) {
-//            try {
-//                Stage stage = (Stage) btn_register.getScene().getWindow();
-//                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/ivanllc/ivanllc/admin-dashboard.fxml")));
-//                stage.setScene(new Scene(root, 900, 600));
-//                stage.setTitle("admin-dashboard");
-//
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//
-//        }
-//        else{
-//            Messages.error("Invalid login details");
-//        }
+        User user;
+        try {
+            user = service.authUser(email, password);
+        } catch (RuntimeException e) {
+            Messages.error("Unable to log in right now. Please try again.");
+            return;
+        }
+        if (user == null) {
+            Messages.error("Invalid login details");
+            return;
+        }
 
+        String role = user.getUserRole() == null ? "" : user.getUserRole().trim();
+        if ("Admin".equalsIgnoreCase(role)) {
+            openDashboard("/com/ivanllc/ivanllc/admin-dashboard.fxml", "Admin Dashboard");
+            return;
+        }
+
+        if ("Customer".equalsIgnoreCase(role)) {
+            openDashboard("/com/ivanllc/ivanllc/customer-dashboard.fxml", "Customer Dashboard");
+            return;
+        }
+
+        Messages.error("Unknown user role: " + role);
+    }
+
+    private void openDashboard(String fxmlPath, String title) {
+        try {
+            Stage stage = (Stage) btn_login.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+            stage.setScene(new Scene(root, 900, 600));
+            stage.setTitle(title);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Messages.error("Unable to open dashboard");
+        }
     }
 }
