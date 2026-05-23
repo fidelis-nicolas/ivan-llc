@@ -5,11 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="495.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanllc.ivanllc.controller.AdminDashboardController">
    <children>
       <Button layoutX="305.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Contractor Services" />
-      <Button layoutX="305.0" layoutY="89.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Employee Services" />
+      <Button fx:id="btnEmployeeService" layoutX="305.0" layoutY="89.0" mnemonicParsing="false" onAction="#openEmployeeService" prefHeight="26.0" prefWidth="158.0" text="Employee Services" />
       <Button layoutX="305.0" layoutY="221.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Services" />
       <Button layoutX="308.0" layoutY="289.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Department" />
       <Button layoutX="305.0" layoutY="356.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="158.0" text="Manage Facilites" />

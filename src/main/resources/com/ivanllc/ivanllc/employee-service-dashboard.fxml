@@ -7,20 +7,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="551.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="551.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanllc.ivanllc.controller.EmployeeServiceController">
    <children>
       <Label layoutX="351.0" layoutY="14.0" text="Employee Management" />
-      <TableView layoutX="79.0" layoutY="90.0" prefHeight="356.0" prefWidth="670.0">
+      <TableView fx:id="tblEmployee" layoutX="79.0" layoutY="90.0" prefHeight="356.0" prefWidth="670.0">
         <columns>
-          <TableColumn prefWidth="54.399993896484375" text="ID" />
-          <TableColumn prefWidth="132.79998016357422" text="Name" />
-            <TableColumn prefWidth="86.4000244140625" text="Salary" />
-            <TableColumn prefWidth="68.0" text="Gender" />
-            <TableColumn prefWidth="68.0" text="DOB" />
-            <TableColumn prefWidth="99.99996948242188" text="Deparment" />
-            <TableColumn prefWidth="68.800048828125" text="Role" />
-            <TableColumn prefWidth="93.59991455078125" text="Position" />
+          <TableColumn fx:id="colEmployeeId" prefWidth="54.399993896484375" text="ID" />
+          <TableColumn fx:id="colEmployeeName" prefWidth="132.79998016357422" text="Name" />
+            <TableColumn fx:id="colEmployeeSalary" prefWidth="86.4000244140625" text="Salary" />
+            <TableColumn fx:id="colGender" prefWidth="68.0" text="Gender" />
+            <TableColumn fx:id="colDOB" prefWidth="68.0" text="DOB" />
+            <TableColumn fx:id="colEmplyeeDept" prefWidth="99.99996948242188" text="Deparment" />
+            <TableColumn fx:id="colEmployeeRole" prefWidth="68.800048828125" text="Role" />
+            <TableColumn fx:id="colEmployeePosition" prefWidth="93.59991455078125" text="Position" />
         </columns>
       </TableView>
       <TextField layoutX="402.0" layoutY="47.0" />
@@ -28,6 +27,6 @@
       <Button layoutX="153.0" layoutY="482.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" text="Add" />
       <Button layoutX="308.0" layoutY="482.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" text="Update" />
       <Button layoutX="458.0" layoutY="482.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" text="Delete" />
-      <Button layoutX="651.0" layoutY="47.0" mnemonicParsing="false" text="Dashboard" />
+      <Button fx:id="btnDashboard" layoutX="651.0" layoutY="47.0" mnemonicParsing="false" onAction="#openDashboard" text="Dashboard" />
    </children>
 </AnchorPane>
