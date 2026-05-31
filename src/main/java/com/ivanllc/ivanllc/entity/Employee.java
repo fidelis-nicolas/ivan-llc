@@ -2,6 +2,7 @@ package com.ivanllc.ivanllc.entity;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -15,7 +16,7 @@ public class Employee {
     private String name;
     private double salary;
     private String gender;
-    private Date DOB;
+    private LocalDate DOB;
     private int department_id;
     private int role_id;
 

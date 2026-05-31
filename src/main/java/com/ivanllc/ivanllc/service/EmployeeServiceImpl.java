@@ -1,14 +1,24 @@
 package com.ivanllc.ivanllc.service;
 
+import com.ivanllc.ivanllc.dao.EmployeeDAO;
 import com.ivanllc.ivanllc.entity.Employee;
 
 import java.util.List;
 
+
 public class EmployeeServiceImpl implements EmployeeService {
+    private EmployeeDAO employeeDAO;
+
+    public EmployeeServiceImpl(EmployeeDAO employeeDAO) {
+        this.employeeDAO = employeeDAO;
+    }
 
     @Override
     public void addEmployee(Employee employee) {
-
+    if(employee.getDepartment_id() == 0){
+        throw new RuntimeException("Employee must be assigned to department");
+    }
+    employeeDAO.addEmployee(employee);
     }
 
     @Override

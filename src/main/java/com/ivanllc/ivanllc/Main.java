@@ -1,5 +1,9 @@
 package com.ivanllc.ivanllc;
 
+import com.ivanllc.ivanllc.dao.EmployeeDAO;
+import com.ivanllc.ivanllc.dao.EmployeeDAOImpl;
+import com.ivanllc.ivanllc.entity.Employee;
+import com.ivanllc.ivanllc.service.EmployeeServiceImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 
 public class Main extends Application {
     @Override
@@ -20,7 +25,17 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-        launch();
+        //launch();
+        EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
+        EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl(employeeDAOImpl);
+        Employee employee = new Employee();
+        employee.setName("Ivan");
+        employee.setSalary(20.00);
+        employee.setRole_id(5);
+        employee.setGender("Male");
+        employee.setDepartment_id(1);
+        employee.setDOB(LocalDate.of(1990,8,20));
 
+        employeeServiceImpl.addEmployee(employee);
     }
 }

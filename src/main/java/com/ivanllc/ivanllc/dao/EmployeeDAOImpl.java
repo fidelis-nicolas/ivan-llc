@@ -4,19 +4,20 @@ import com.ivanllc.ivanllc.entity.Employee;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void addEmployee(Employee employee) {
-        String sql = "INSERT INTO TABLE employee VALUES (null,? ?,?,?,?,?)";
+        String sql = "INSERT INTO employee VALUES (null,? ?,?,?,?,?)";
         try (Connection connection = DBConnect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ) {
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setDouble(2, employee.getSalary());
             preparedStatement.setString(3, employee.getGender());
-            preparedStatement.setDate(4, (Date) employee.getDOB());
+            preparedStatement.setDate(4, Date.valueOf(employee.getDOB()));
             preparedStatement.setInt(5, employee.getDepartment_id());
             preparedStatement.setInt(6, employee.getRole_id());
 
@@ -48,7 +49,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setDouble(2, employee.getSalary());
             preparedStatement.setString(3, employee.getGender());
-            preparedStatement.setDate(4, (Date) employee.getDOB());
+            preparedStatement.setDate(4, Date.valueOf(employee.getDOB()));
             preparedStatement.setInt(5, employee.getDepartment_id());
             preparedStatement.setInt(6, employee.getRole_id());
             preparedStatement.setInt(7, employeeId);
@@ -70,15 +71,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             Employee employee = new Employee();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 employee.setId(resultSet.getInt("employee_id"));
                 employee.setName(resultSet.getString("name"));
                 employee.setSalary(resultSet.getDouble("salary"));
                 employee.setGender(resultSet.getString("gender"));
-                employee.setDOB(resultSet.getDate("DOB"));
+                employee.setDOB(resultSet.getDate("DOB").toLocalDate());
                 employee.setDepartment_id(resultSet.getInt("Department"));
                 employee.setRole_id(resultSet.getInt("Role"));
-                return  employee;
+                return employee;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,8 +90,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployee() {
+        List<Employee> allEmployees = new ArrayList<>();
+        String sql = "SELECT * FROM employee";
+        try (Connection connection = DBConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ) {
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        return List.of();
+            while (resultSet.next()) {
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt("employee_id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setSalary(resultSet.getDouble("salary"));
+                employee.setGender(resultSet.getString("gender"));
+                employee.setDOB(resultSet.getDate("DOB").toLocalDate());
+                employee.setDepartment_id(resultSet.getInt("Department"));
+                employee.setRole_id(resultSet.getInt("Role"));
+                allEmployees.add(employee);
+            }
+        } catch (SQLException sqlExeption) {
+            sqlExeption.printStackTrace();
+        }
+        return allEmployees;
     }
 
     @Override
