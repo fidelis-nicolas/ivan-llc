@@ -10,7 +10,7 @@ import java.util.List;
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void addEmployee(Employee employee) {
-        String sql = "INSERT INTO employee VALUES (null,? ?,?,?,?,?)";
+        String sql = "INSERT INTO employee VALUES (5,? ?,?,?,?,?)";
         try (Connection connection = DBConnect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ) {

@@ -30,11 +30,12 @@ public class Main extends Application {
         EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl(employeeDAOImpl);
         Employee employee = new Employee();
         employee.setName("Ivan");
-        employee.setSalary(20.00);
-        employee.setRole_id(5);
+        employee.setSalary(20.0);
+        employee.setRole_id(1);
         employee.setGender("Male");
         employee.setDepartment_id(1);
         employee.setDOB(LocalDate.of(1990,8,20));
+
 
         employeeServiceImpl.addEmployee(employee);
     }
