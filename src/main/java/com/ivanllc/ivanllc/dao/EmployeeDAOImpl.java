@@ -70,8 +70,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setInt(1, employeeId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            Employee employee = new Employee();
+
             if (resultSet.next()) {
+                Employee employee = new Employee();
                 employee.setId(resultSet.getInt("employee_id"));
                 employee.setName(resultSet.getString("name"));
                 employee.setSalary(resultSet.getDouble("salary"));
@@ -116,6 +117,35 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> searchEmployeeByName(String name) {
-        return List.of();
+        List<Employee> employees = new ArrayList<>();
+
+        String sql = "SELECT * FROM employee WHERE name ?";
+
+        try (Connection connection = DBConnect.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, name);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Employee employee = new Employee();
+
+                employee.setId(resultSet.getInt("employee_id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setSalary(resultSet.getDouble("salary"));
+                employee.setGender(resultSet.getString("gender"));
+                employee.setDOB(resultSet.getDate("DOB").toLocalDate());
+                employee.setDepartment_id(resultSet.getInt("Department"));
+                employee.setRole_id(resultSet.getInt("Role"));
+
+                employees.add(employee);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    return employees;
     }
 }
