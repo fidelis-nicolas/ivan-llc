@@ -1,9 +1,9 @@
 package com.ivanllc.ivanllc.service;
 
+import java.util.List;
+
 import com.ivanllc.ivanllc.dao.EmployeeDAO;
 import com.ivanllc.ivanllc.entity.Employee;
-
-import java.util.List;
 
 
 public class EmployeeServiceImpl implements EmployeeService {
@@ -15,10 +15,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployee(Employee employee) {
-    if(employee.getDepartment_id() == 0){
-        throw new RuntimeException("Employee must be assigned to department");
-    }
+    // if(employee.getDepartment_id() == 0){
+    //     throw new RuntimeException("Employee must be assigned to department");
+    // }
     employeeDAO.addEmployee(employee);
+
+    System.out.println(employee);
     }
 
     @Override

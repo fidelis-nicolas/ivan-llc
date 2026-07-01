@@ -1,18 +1,24 @@
 package com.ivanllc.ivanllc.dao;
 
-import com.ivanllc.ivanllc.entity.Employee;
-
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ivanllc.ivanllc.entity.Employee;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void addEmployee(Employee employee) {
-        String sql = "INSERT INTO employee VALUES (5,? ?,?,?,?,?)";
+
+
+        String sql = "INSERT INTO employee(employee_name, salary, gender, dob, department_id, role_id) VALUES(?,?,?,?,?,?)";
         try (Connection connection = DBConnect.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ) {
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setDouble(2, employee.getSalary());
@@ -20,6 +26,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setDate(4, Date.valueOf(employee.getDOB()));
             preparedStatement.setInt(5, employee.getDepartment_id());
             preparedStatement.setInt(6, employee.getRole_id());
+
+            //employee_id	name	salary	gender	dob	department_id	role_id	
+
 
             preparedStatement.executeUpdate();
 
