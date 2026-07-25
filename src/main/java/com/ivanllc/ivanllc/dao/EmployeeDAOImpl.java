@@ -83,12 +83,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             if (resultSet.next()) {
                 Employee employee = new Employee();
                 employee.setId(resultSet.getInt("employee_id"));
-                employee.setName(resultSet.getString("name"));
+                employee.setName(resultSet.getString("employee_name"));
                 employee.setSalary(resultSet.getDouble("salary"));
                 employee.setGender(resultSet.getString("gender"));
                 employee.setDOB(resultSet.getDate("DOB").toLocalDate());
-                employee.setDepartment_id(resultSet.getInt("Department"));
-                employee.setRole_id(resultSet.getInt("Role"));
+                employee.setDepartment_id(resultSet.getInt("department_id"));
+                employee.setRole_id(resultSet.getInt("Role_id"));
                 return employee;
             }
         } catch (SQLException e) {
@@ -110,12 +110,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             while (resultSet.next()) {
                 Employee employee = new Employee();
                 employee.setId(resultSet.getInt("employee_id"));
-                employee.setName(resultSet.getString("name"));
+                employee.setName(resultSet.getString("employee_name"));
                 employee.setSalary(resultSet.getDouble("salary"));
                 employee.setGender(resultSet.getString("gender"));
                 employee.setDOB(resultSet.getDate("DOB").toLocalDate());
-                employee.setDepartment_id(resultSet.getInt("Department"));
-                employee.setRole_id(resultSet.getInt("Role"));
+                employee.setDepartment_id(resultSet.getInt("Department_id"));
+                employee.setRole_id(resultSet.getInt("Role_id"));
                 allEmployees.add(employee);
             }
         } catch (SQLException sqlExeption) {
@@ -128,10 +128,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public List<Employee> searchEmployeeByName(String name) {
         List<Employee> employees = new ArrayList<>();
 
-        String sql = "SELECT * FROM employee WHERE name ?";
+        String sql = "SELECT * FROM employee WHERE employee_name = ?";
+
 
         try (Connection connection = DBConnect.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
 
             preparedStatement.setString(1, name);
 
@@ -141,12 +143,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 Employee employee = new Employee();
 
                 employee.setId(resultSet.getInt("employee_id"));
-                employee.setName(resultSet.getString("name"));
+                employee.setName(resultSet.getString("employee_name"));
                 employee.setSalary(resultSet.getDouble("salary"));
                 employee.setGender(resultSet.getString("gender"));
                 employee.setDOB(resultSet.getDate("DOB").toLocalDate());
-                employee.setDepartment_id(resultSet.getInt("Department"));
-                employee.setRole_id(resultSet.getInt("Role"));
+                employee.setDepartment_id(resultSet.getInt("Department_id"));
+                employee.setRole_id(resultSet.getInt("Role_id"));
 
                 employees.add(employee);
             }

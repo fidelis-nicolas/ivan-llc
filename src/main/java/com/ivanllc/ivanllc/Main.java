@@ -29,14 +29,20 @@ public class Main extends Application {
         EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
         EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl(employeeDAOImpl);
         Employee employee = new Employee();
-        employee.setName("Ivan");
-        employee.setSalary(20.0);
+        employee.setName("Fidelis");
+        employee.setSalary(25.0);
         employee.setRole_id(1);
         employee.setGender("Male");
         employee.setDepartment_id(1);
-        employee.setDOB(LocalDate.of(1990,8,20));
+        employee.setDOB(LocalDate.of(1999,5,20));
 
+//        System.out.println(employeeServiceImpl.findById(1));
+        employeeServiceImpl.deleteEmployee(1);
+        System.out.println(employeeServiceImpl.getAllEmployee());
 
-        employeeServiceImpl.addEmployee(employee);
+//         employeeServiceImpl.addEmployee(employee);
+
+//        System.out.println(employeeServiceImpl.searchEmployeeByName("Fidelis"));
+
     }
 }
