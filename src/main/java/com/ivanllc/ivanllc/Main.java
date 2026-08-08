@@ -25,23 +25,23 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-        //launch();
-        EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
-        EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl(employeeDAOImpl);
-        Employee employee = new Employee();
-        employee.setName("Fidelis");
-        employee.setSalary(25.0);
-        employee.setRole_id(1);
-        employee.setGender("Male");
-        employee.setDepartment_id(1);
-        employee.setDOB(LocalDate.of(1999,5,20));
-
+        launch();
+//        EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
+//        EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl(employeeDAOImpl);
+//        Employee employee = new Employee();
+//        employee.setName("Fidelis");
+//        employee.setSalary(25.0);
+//        employee.setRole_id(1);
+//        employee.setGender("Male");
+//        employee.setDepartment_id(1);
+//        employee.setDOB(LocalDate.of(1999,5,20));
+//
 //        System.out.println(employeeServiceImpl.findById(1));
-        employeeServiceImpl.deleteEmployee(1);
-        System.out.println(employeeServiceImpl.getAllEmployee());
-
+//        employeeServiceImpl.deleteEmployee(1);
+//        System.out.println(employeeServiceImpl.getAllEmployee());
+//
 //         employeeServiceImpl.addEmployee(employee);
-
+//
 //        System.out.println(employeeServiceImpl.searchEmployeeByName("Fidelis"));
 
     }

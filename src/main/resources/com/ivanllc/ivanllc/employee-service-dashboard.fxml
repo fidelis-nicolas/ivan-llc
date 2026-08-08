@@ -17,7 +17,7 @@
             <TableColumn fx:id="colEmployeeSalary" prefWidth="86.4000244140625" text="Salary" />
             <TableColumn fx:id="colGender" prefWidth="68.0" text="Gender" />
             <TableColumn fx:id="colDOB" prefWidth="68.0" text="DOB" />
-            <TableColumn fx:id="colEmplyeeDept" prefWidth="99.99996948242188" text="Deparment" />
+            <TableColumn fx:id="colEmployeeDept" prefWidth="99.99996948242188" text="Deparment" />
             <TableColumn fx:id="colEmployeeRole" prefWidth="68.800048828125" text="Role" />
             <TableColumn fx:id="colEmployeePosition" prefWidth="93.59991455078125" text="Position" />
         </columns>

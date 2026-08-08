@@ -19,6 +19,7 @@ public class Employee {
     private LocalDate DOB;
     private int department_id;
     private int role_id;
+    private String position;
 
 }
 
